@@ -97,6 +97,9 @@ func getDeviceIDs() (strings.Builder, error) {
 	cmd := exec.Command("wmic", "logicaldisk", "get", "DeviceID")
 	var out strings.Builder
 	cmd.Stdout = &out
+	cmd.SysProcAttr = &syscall.SysProcAttr{
+		HideWindow: true,
+	}
 	err := cmd.Run()
 	return out, err
 }
@@ -117,6 +120,10 @@ func copy(src, dest string) (string, error) {
 	// 	fmt.Println("Error:", err)
 	// 	return
 	// }
+
+cmd.SysProcAttr = &syscall.SysProcAttr{
+		HideWindow: true,
+	}
 
 	_out, err := cmd.Output()
 	out := string(_out)

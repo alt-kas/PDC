@@ -1,0 +1,2 @@
+gd cmd
+wmic logicaldisk get DeviceID
